@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>NFC名片管理員</title>
+
+<style>
+
+body{
+font-family:sans-serif;
+background:#f2f3f7;
+padding:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>NFC名片客戶列表</h2>
+
+<table id="table">
+
+<tr>
+<th>ID</th>
+<th>姓名</th>
+<th>Email</th>
+<th>公司</th>
+</tr>
+
+</table>
+
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbzuddqEBpMiM_FvRPnWsgydPOV-LjUyxSJOeiUUvLuFB0gZIosW9zT3-EY_3eeNlm1VhQ/exec"
+
+fetch(API,{
+method:"POST",
+body:JSON.stringify({
+action:"list"
+})
+})
+.then(r=>r.json())
+.then(data=>{
+
+data.forEach(u=>{
+
+let row=`
+<tr>
+
+<td>${u[0]}</td>
+<td>${u[2]}</td>
+<td>${u[6]}</td>
+<td>${u[3]}</td>
+
+</tr>
+`
+
+table.innerHTML+=row
+
+})
+
+})
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>NFC電子名片註冊</title>
+
+<style>
+
+body{
+font-family:sans-serif;
+background:#f2f3f7;
+margin:0;
+padding:20px;
+}
+
+.card{
+max-width:420px;
+margin:auto;
+background:white;
+padding:24px;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:8px;
+background:black;
+color:white;
+font-size:16px;
+}
+
+.result{
+margin-top:20px;
+background:#f5f5f5;
+padding:12px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>申請電子名片</h2>
+
+<input id="name" placeholder="姓名">
+<input id="email" placeholder="Email">
+
+<button onclick="register()">建立名片</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbzuddqEBpMiM_FvRPnWsgydPOV-LjUyxSJOeiUUvLuFB0gZIosW9zT3-EY_3eeNlm1VhQ/exec"
+
+function register(){
+
+fetch(API,{
+method:"POST",
+body:JSON.stringify({
+
+action:"register",
+name:name.value,
+email:email.value
+
+})
+})
+.then(r=>r.json())
+.then(d=>{
+
+result.innerHTML=`
+你的名片建立成功<br><br>
+
+ID : ${d.id}<br>
+KEY : ${d.key}<br><br>
+
+請保存此資料登入後台
+`
+
+})
+
+}
+
+</script>
+
+</body>
+</html>
