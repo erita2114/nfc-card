@@ -1,0 +1,30 @@
+<input id="name" placeholder="姓名">
+<input id="company" placeholder="公司">
+<input id="phone" placeholder="手機">
+<button onclick="save()">儲存</button>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycby8qtUxJnbD80KsR5k-dK7vphQ0Q4zvcjRIEZ3xxxroWjFIG779gOPVk7UR3gbpYKCe/exec";
+const id=localStorage.getItem("uid");
+
+fetch(API+"?action=get&id="+id)
+.then(r=>r.json())
+.then(d=>{
+name.value=d.name||"";
+company.value=d.company||"";
+phone.value=d.phone||"";
+});
+
+function save(){
+fetch(API+"?action=update",{
+method:"POST",
+body:JSON.stringify({
+id:id,
+name:name.value,
+company:company.value,
+phone:phone.value
+})
+})
+.then(()=>alert("已更新"));
+}
+</script>
