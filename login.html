@@ -1,0 +1,26 @@
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="密碼">
+<button onclick="login()">登入</button>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycby8qtUxJnbD80KsR5k-dK7vphQ0Q4zvcjRIEZ3xxxroWjFIG779gOPVk7UR3gbpYKCe/exec";
+
+function login(){
+fetch(API+"?action=login",{
+method:"POST",
+body:JSON.stringify({
+email:email.value,
+password:password.value
+})
+})
+.then(r=>r.json())
+.then(d=>{
+if(d.status=="success"){
+localStorage.setItem("uid",d.id);
+location.href="edit.html";
+}else{
+alert("登入失敗");
+}
+});
+}
+</script>
