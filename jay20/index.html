@@ -148,6 +148,7 @@
             color: var(--text-main);
             transition: all 0.3s ease;
             text-align: left;
+            min-width: 0; /* 👈 修正：防止網格溢位偏右 */
         }
         .glass-item:hover {
             background: rgba(255,255,255,0.15);
@@ -159,8 +160,15 @@
             color: var(--accent-color);
             margin-right: 14px;
             width: 24px; text-align: center;
+            flex-shrink: 0; /* 👈 修正：防止圖示被擠壓變形 */
         }
-        .gi-text { display: flex; flex-direction: column; overflow: hidden; }
+        .gi-text { 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden; 
+            min-width: 0; /* 👈 修正：讓文字容器正確受限於網格 */
+            flex-grow: 1;
+        }
         .gi-label { font-size: 11px; color: var(--text-sub); margin-bottom: 2px; }
         .gi-val { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
