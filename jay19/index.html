@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAY | 晶透琉璃數位名片</title>
+    <!-- 引入字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --bg-gradient: linear-gradient(-45deg, #1e3c72, #2a5298, #1e3c72, #182848); --glass-bg: rgba(20, 40, 70, 0.4); --glass-border: rgba(255, 255, 255, 0.15); --text-main: #FFFFFF; --text-sub: #A8BEE0; --accent-color: #4DB8FF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans TC', sans-serif; }
+
+        /* 動態流彩背景 */
+        body {
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 裝飾性背景光球 */
+        .ambient-light {
+            position: fixed;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            filter: blur(100px);
+            opacity: 0.3;
+            z-index: 0;
+            top: -100px; right: -100px;
+            animation: floatOrb 8s ease-in-out infinite alternate;
+        }
+        .ambient-light-2 {
+            position: fixed;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            filter: blur(90px);
+            opacity: 0.15;
+            z-index: 0;
+            bottom: -50px; left: -50px;
+            animation: floatOrb 10s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-30px, 50px); }
+        }
+
+        /* NFC 掃描動畫 (毛玻璃特化版) */
+        #nfc-loader {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        #nfc-loader.hidden { opacity: 0; visibility: hidden; }
+        .nfc-waves { position: relative; width: 120px; height: 120px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; }
+        .nfc-wave { position: absolute; border: 2px solid var(--accent-color); border-radius: 50%; animation: ripple 2s cubic-bezier(0.21, 0.53, 0.56, 0.8) infinite; opacity: 0; }
+        .nfc-wave:nth-child(1) { width: 40px; height: 40px; animation-delay: 0s; }
+        .nfc-wave:nth-child(2) { width: 80px; height: 80px; animation-delay: 0.6s; }
+        .nfc-wave:nth-child(3) { width: 120px; height: 120px; animation-delay: 1.2s; }
+        .nfc-icon-center { position: relative; z-index: 2; font-size: 28px; color: #FFFFFF; background: var(--accent-color); width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px var(--accent-color); animation: pulseOrb 2s ease-in-out infinite; }
+        @keyframes ripple { 0% { transform: scale(0.5); opacity: 0; } 40% { opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes pulseOrb { 0%, 100% { transform: scale(1); box-shadow: 0 0 15px var(--accent-color); } 50% { transform: scale(1.05); box-shadow: 0 0 30px var(--accent-color); } }
+        .nfc-loading-text { font-size: 16px; font-weight: 600; color: #FFFFFF; letter-spacing: 3px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); animation: pulseText 1.5s ease-in-out infinite; }
+        @keyframes pulseText { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+        /* 毛玻璃主容器 */
+        .container {
+            width: 100%;
+            max-width: 440px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+
+    border: 4px solid #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+        .name {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* 玻璃微章 */
+        .glass-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            backdrop-filter: blur(10px);
+        }
+        .gb-company { font-weight: 700; color: var(--accent-color); }
+        .gb-dot { width: 4px; height: 4px; background: var(--text-sub); border-radius: 50%; margin: 0 10px; opacity: 0.5; }
+        .gb-title { color: var(--text-sub); }
+
+        /* 雙欄玻璃網格 */
+        .glass-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .glass-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        .glass-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+        .glass-item i {
+            font-size: 20px;
+            color: var(--accent-color);
+            margin-right: 14px;
+            width: 24px; text-align: center;
+        }
+        .gi-text { display: flex; flex-direction: column; overflow: hidden; }
+        .gi-label { font-size: 11px; color: var(--text-sub); margin-bottom: 2px; }
+        .gi-val { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* 玻璃按鈕 */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .glass-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .glass-btn i { font-size: 18px; margin-right: 12px; }
+        .glass-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        /* 特殊高亮按鈕 */
+        .btn-vcf-glass {
+            background: var(--accent-color);
+            color: #FFFFFF;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .btn-vcf-glass:hover {
+            filter: brightness(1.15);
+        }
+
+        /* 品牌色懸浮發光效果 */
+        .hover-line:hover { background: rgba(6, 199, 85, 0.8); color: #FFF; border-color: #06C755; }
+        .hover-ig:hover { background: linear-gradient(45deg, rgba(240,148,51,0.8), rgba(220,39,67,0.8), rgba(188,24,136,0.8)); color: #FFF; border-color: transparent; }
+        .hover-fb:hover { background: rgba(24, 119, 242, 0.8); color: #FFF; border-color: #1877F2; }
+        .hover-tk:hover { background: rgba(0, 0, 0, 0.8); color: #FFF; border-color: #333; }
+        .hover-web:hover { background: rgba(255, 255, 255, 0.25); }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: var(--text-sub);
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景裝飾光球 -->
+    <div class="ambient-light"></div>
+    <div class="ambient-light-2"></div>
+
+    <!-- NFC 掃描過場動畫 -->
+    <div id="nfc-loader">
+        <div class="nfc-waves">
+            <div class="nfc-wave"></div>
+            <div class="nfc-wave"></div>
+            <div class="nfc-wave"></div>
+            <div class="nfc-icon-center"><i class="fas fa-mobile-alt"></i></div>
+        </div>
+        <div class="nfc-loading-text">NFC 感應解析中...</div>
+    </div>
+
+    <!-- 毛玻璃主內容 -->
+    <div class="container">
+        <!-- 抓取 GitHub LOGO -->
+        <img class="logo" src="https://raw.githubusercontent.com/erita2114/nfc-card/main/images/jay.png" alt="JAY LOGO">
+        
+        <h1 class="name">JAY</h1>
+        <div class="glass-badge"><span class="gb-company">享刻畫</span><span class="gb-dot"></span><span class="gb-title">鏡子燈光畫｜NFC電子名片｜拼圖相框</span></div>
+
+        <!-- 雙欄玻璃網格 -->
+        <div class="glass-grid">
+        <a href="tel:0981013575" class="glass-item">
+            <i class="fas fa-mobile-alt"></i>
+            <div class="gi-text">
+                <span class="gi-label">手機</span>
+                <span class="gi-val">0981013575</span>
+            </div>
+        </a>
+        <a href="tel:07-1234567" class="glass-item">
+            <i class="fas fa-phone-alt"></i>
+            <div class="gi-text">
+                <span class="gi-label">市話</span>
+                <span class="gi-val">07-1234567</span>
+            </div>
+        </a>
+        <a href="mailto:shenchieh0730@gmail.com" class="glass-item" style="grid-column: span 2;">
+            <i class="fas fa-envelope"></i>
+            <div class="gi-text">
+                <span class="gi-label">信箱</span>
+                <span class="gi-val">shenchieh0730@gmail.com</span>
+            </div>
+        </a>
+        <div class="glass-item" style="grid-column: span 2; cursor: default;">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="gi-text">
+                <span class="gi-label">地址</span>
+                <span class="gi-val">高雄市鳳山區頂新50街000號</span>
+            </div>
+        </div></div>
+
+        <!-- 玻璃按鈕區塊 -->
+        <div class="links">
+            <a href="jay19.vcf" class="glass-btn btn-vcf-glass"><i class="fas fa-address-card"></i> 存入手機通訊錄</a><a href="tel:0981013575" class="glass-btn"><i class="fas fa-phone"></i> 立即來電諮詢</a><a href="https://lin.ee/qAXugbh" target="_blank" class="glass-btn hover-line"><i class="fab fa-line"></i> LINE 快速預約</a><a href="https://www.instagram.com/i0709uoo?igsh=MXQ5OTF2cTF0OXoycw==" target="_blank" class="glass-btn hover-ig"><i class="fab fa-instagram"></i> 探索 Instagram</a><a href="https://www.facebook.com/share/1BSLfeA4FU/" target="_blank" class="glass-btn hover-fb"><i class="fab fa-facebook-f"></i> Facebook 粉絲團</a><a href="https://shopee.tw/jay0730" target="_blank" class="glass-btn hover-web"><i class="fas fa-globe"></i> 前往官方網站</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 JAY. All Rights Reserved.
+        </div>
+    </div>
+
+    <!-- 動畫控制腳本 -->
+    <script>
+        setTimeout(function() {
+            var loader = document.getElementById('nfc-loader');
+            if(loader) loader.classList.add('hidden');
+        }, 1800);
+    </script>
+</body>
+</html>
