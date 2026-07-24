@@ -130,47 +130,59 @@
         .gb-dot { width: 4px; height: 4px; background: var(--text-sub); border-radius: 50%; margin: 0 10px; opacity: 0.5; }
         .gb-title { color: var(--text-sub); }
 
-        /* 雙欄玻璃網格 */
+        /* 雙欄玻璃網格 (優化內距，給電話號碼更多空間) */
         .glass-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 30px;
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; /* 略微縮小格子間距 */
+            margin-bottom: 30px; 
+            width: 100%;
         }
         .glass-item {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.05); 
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
+            border-radius: 16px; 
+            padding: 14px 10px; /* 👈 【修改 1】縮小左右與上下內距，騰出更多空間給文字 */
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
             color: var(--text-main);
-            transition: all 0.3s ease;
-            text-align: left;
-            min-width: 0; /* 👈 修正：防止網格溢位偏右 */
+            transition: all 0.3s ease; 
+            text-align: left; 
+            min-width: 0;
         }
-        .glass-item:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
+        .glass-item:hover { 
+            background: rgba(255,255,255,0.15); 
+            transform: translateY(-2px); 
+            border-color: var(--accent-color); 
         }
         .glass-item i {
-            font-size: 20px;
-            color: var(--accent-color);
-            margin-right: 14px;
-            width: 24px; text-align: center;
-            flex-shrink: 0; /* 👈 修正：防止圖示被擠壓變形 */
+            font-size: 17px; /* 👈 【修改 2】稍微縮小圖示大小 */
+            color: var(--accent-color); 
+            margin-right: 8px; /* 👈 【修改 3】縮小圖示與文字之間的距離 */
+            width: 20px; 
+            text-align: center; 
+            flex-shrink: 0;
         }
         .gi-text { 
             display: flex; 
             flex-direction: column; 
             overflow: hidden; 
-            min-width: 0; /* 👈 修正：讓文字容器正確受限於網格 */
-            flex-grow: 1;
+            min-width: 0; 
+            flex-grow: 1; 
         }
-        .gi-label { font-size: 11px; color: var(--text-sub); margin-bottom: 2px; }
-        .gi-val { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .gi-label { 
+            font-size: 11px; 
+            color: var(--text-sub); 
+            margin-bottom: 2px; 
+        }
+        .gi-val { 
+            font-size: 13px; /* 👈 【修改 4】字體從 14px 改為 13px，確保長數字絕對不會被 ... 截斷 */
+            font-weight: 600; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+        }
 
         /* 玻璃按鈕 */
         .links {
