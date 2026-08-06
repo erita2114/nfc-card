@@ -11,12 +11,13 @@
     
     <style>
         :root {
-            --bg-color: #FFF5F7;
-            --card-bg: #FFFFFF;
-            --primary-color: #9D5B6B; /* 玫瑰煙粉 */
-            --accent-color: #F4A6B7; /* 櫻花淡粉 */
-            --text-main: #4A4A4A;
-            --text-sub: #888888;
+            /* 溫暖奶茶色系配置 */
+            --bg-color: #F7F3EE;         /* 溫暖奶茶米色背景 */
+            --card-bg: #FFFFFF;          /* 卡片純白背景 */
+            --primary-color: #7A5C44;    /* 沉穩溫潤的奶茶可可色 */
+            --accent-color: #D4A373;     /* 溫暖焦糖奶茶色點綴 */
+            --text-main: #4A3B32;        /* 深咖啡色主文字 */
+            --text-sub: #8A7B72;         /* 柔和灰棕色次要文字 */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -112,7 +113,7 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
             text-align: center;
             border-top: 6px solid var(--primary-color);
         }
@@ -126,7 +127,7 @@
             display: block;
             margin: 0 auto;
             border: 4px solid #fff;
-            box-shadow: 0 8px 25px rgba(0,0,0,.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,.12);
         }
 
         .name {
@@ -137,21 +138,20 @@
             letter-spacing: 1px;
         }
 
-        /* 英文手寫名字體樣式 (清新櫻粉色系搭配) */
+        /* 英文手寫名字體樣式 */
         .sub-name {
             font-family: 'Dancing Script', cursive;
             font-size: 24px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             margin-bottom: 15px;
             letter-spacing: 1.5px;
             font-weight: 600;
-            opacity: 0.85;
         }
 
         /* 公司資訊卡片 */
         .company-card {
-            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-            border: 1px solid #E2E8F0;
+            background: linear-gradient(135deg, #FDFBF7 0%, #F4EFEA 100%);
+            border: 1px solid #E6DED5;
             border-left: 4px solid var(--accent-color);
             border-radius: 12px;
             padding: 16px;
@@ -181,7 +181,7 @@
             display: flex;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px dashed #E2E8F0;
+            border-bottom: 1px dashed #E6DED5;
             font-size: 16px;
             font-family: sans-serif;
         }
@@ -191,8 +191,8 @@
         .contact-icon-wrapper {
             width: 36px;
             height: 36px;
-            background-color: rgba(157, 91, 107, 0.05);
-            color: var(--primary-color);
+            background-color: rgba(122, 92, 68, 0.05);
+            color: var(--accent-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -248,18 +248,18 @@
             margin-right: 12px;
         }
 
-        /* VCF 專屬按鈕風格 */
+        /* VCF 專屬按鈕風格 (奶茶色系) */
         .btn-vcf {
-            background-color: var(--accent-color);
+            background-color: #EEDCC5;
             color: var(--primary-color);
-            box-shadow: 0 6px 15px rgba(0,0,0, 0.08);
+            box-shadow: 0 6px 15px rgba(0,0,0, 0.05);
             font-weight: 700;
         }
 
         .btn-call {
             background-color: var(--primary-color);
             color: white;
-            box-shadow: 0 4px 15px rgba(157, 91, 107, 0.2);
+            box-shadow: 0 4px 15px rgba(122, 92, 68, 0.15);
         }
         .btn-line {
             background-color: #06C755;
