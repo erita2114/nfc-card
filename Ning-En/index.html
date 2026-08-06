@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>鍾甯恩 | 個人數位名片</title>
-    <!-- 引入 Google 字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>鍾甯恩 (Delia) | 個人數位名片</title>
+    <!-- 引入 Google 字體 (含手寫字體 Dancing Script) -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- 引入 FontAwesome 圖示庫 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            
-      --bg-color: #FFF5F7;
-      --card-bg: #FFFFFF;
-      --primary-color: #9D5B6B; /* 玫瑰煙粉 */
-      --accent-color: #F4A6B7; /* 櫻花淡粉 */
-      --text-main: #4A4A4A;
-      --text-sub: #888888;
-    
+            --bg-color: #FFF5F7;
+            --card-bg: #FFFFFF;
+            --primary-color: #9D5B6B; /* 玫瑰煙粉 */
+            --accent-color: #F4A6B7; /* 櫻花淡粉 */
+            --text-main: #4A4A4A;
+            --text-sub: #888888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -107,7 +105,7 @@
             50% { opacity: 1; }
         }
 
-        /* 原本主容器樣式 */
+        /* 主容器樣式 */
         .container {
             width: 100%;
             max-width: 480px;
@@ -119,7 +117,7 @@
             border-top: 6px solid var(--primary-color);
         }
 
-        /* 橫向 LOGO 圖片 */
+        /* 圓形 LOGO 圖片 */
         .logo {
             width: 120px;
             height: 120px;
@@ -135,8 +133,19 @@
             font-size: 28px;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             letter-spacing: 1px;
+        }
+
+        /* 英文手寫名字體樣式 (清新櫻粉色系搭配) */
+        .sub-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            opacity: 0.85;
         }
 
         /* 公司資訊卡片 */
@@ -146,7 +155,7 @@
             border-left: 4px solid var(--accent-color);
             border-radius: 12px;
             padding: 16px;
-            margin: 20px 0 25px 0;
+            margin: 15px 0 25px 0;
             text-align: left;
         }
         .company-title {
@@ -182,8 +191,8 @@
         .contact-icon-wrapper {
             width: 36px;
             height: 36px;
-            background-color: rgba(0, 0, 0, 0.03);
-            color: var(--accent-color);
+            background-color: rgba(157, 91, 107, 0.05);
+            color: var(--primary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -250,7 +259,7 @@
         .btn-call {
             background-color: var(--primary-color);
             color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0, 0.1);
+            box-shadow: 0 4px 15px rgba(157, 91, 107, 0.2);
         }
         .btn-line {
             background-color: #06C755;
@@ -288,6 +297,7 @@
         <img class="logo" src="Ning-En.png" alt="鍾甯恩 LOGO">
         
         <h1 class="name">鍾甯恩</h1>
+        <div class="sub-name">Delia</div>
         
         <div class="company-card"><div class="company-title">雋磊生醫</div><div class="company-subtitle">醫療美容設備｜生技保健產品｜美容保養品｜專業顧問服務</div></div>
 
@@ -306,7 +316,7 @@
                     <a href="mailto:fan12181218@mail.com">fan12181218@mail.com</a>
                 </div>
             </div>
-            <!-- 已改為可點擊的地址連結 -->
+            <!-- 可點擊的地圖地址 -->
             <div class="contact-item">
                 <div class="contact-icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
                 <div class="contact-value">
@@ -340,7 +350,6 @@
 
     <!-- 控制動畫淡出的 JavaScript -->
     <script>
-        // 設定 1.8 秒後自動隱藏動畫，展現名片
         setTimeout(function() {
             var loader = document.getElementById('nfc-loader');
             if(loader) {
