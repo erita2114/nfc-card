@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --bg-color: #FFFFFF; --card-bg: #FFFFFF; --primary-color: #152C4A; --accent-color: #B89753; --text-main: #2D3748; --text-sub: #6A7B93; }
+        :root { --bg-color: #EEF3F8; --card-bg: #FFFFFF; --primary-color: #152C4A; --accent-color: #B89753; --text-main: #2D3748; --text-sub: #6A7B93; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -91,14 +91,21 @@
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(0,0,0,0.08);
         }
-        .editorial-company {
-            font-size: 17px;
-            font-weight: 500;
-            color: var(--accent-color);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
+  .editorial-company {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--accent-color);
+    letter-spacing: 0;
+    margin-bottom: 6px;
+}
+
+.company-en {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.company-in {
+    margin-left: 0px;
+}
 
         /* 細線聯絡清單 */
         .editorial-contact-list {
@@ -187,7 +194,11 @@
         <img class="logo" src="Mina.png" alt="林芸合 Mina LOGO">
         
         <h1 class="name">林芸合 Mina</h1>
-        <div class="editorial-meta"><div class="editorial-company">O’in歐印空間設計</div></div>
+        <div class="editorial-meta"><div class="editorial-company"><div class="editorial-meta">
+    <div class="editorial-company">
+        <span class="company-en">O’<span class="company-in">IN</span></span>歐印空間設計
+    </div>
+</div>
 
         <!-- 聯絡資訊細線清單 -->
         <div class="editorial-contact-list">
