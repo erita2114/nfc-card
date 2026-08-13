@@ -92,13 +92,20 @@
             border-bottom: 1px solid rgba(0,0,0,0.08);
         }
         .editorial-company {
-            font-size: 17px;
-            font-weight: 500;
-            color: var(--accent-color);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--accent-color);
+    letter-spacing: 0;
+    margin-bottom: 6px;
+}
+
+.company-en {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.company-in {
+    margin-left: 0px;
+}
 
         /* 細線聯絡清單 */
         .editorial-contact-list {
@@ -187,7 +194,11 @@
         <img class="logo" src="Oliver-Ou.png" alt="歐憲宗 Oliver Ou LOGO">
         
         <h1 class="name">歐憲宗 Oliver Ou</h1>
-        <div class="editorial-meta"><div class="editorial-company">O’in歐印空間設計</div></div>
+        <div class="editorial-meta"><div class="editorial-meta">
+    <div class="editorial-company">
+        <span class="company-en">O’<span class="company-in">IN</span></span>歐印空間設計
+    </div>
+</div>
 
         <!-- 聯絡資訊細線清單 -->
         <div class="editorial-contact-list">
